@@ -1,8 +1,9 @@
 import { Box, Flex, SimpleGrid, Text, theme } from "@chakra-ui/react";
 import dynamic from "next/dynamic"
-import { Header } from "../components/Header";
+
 import { Sidebar } from "../components/Sidebar";
 import { ApexOptions } from 'apexcharts';
+import { Header } from "../components/Header";
 
 // lazyloading -> sem passar na camada backend next
 // somente carrega pelo browser
