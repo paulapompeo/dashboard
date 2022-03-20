@@ -2,6 +2,7 @@ import { Box, Flex, SimpleGrid, Text, theme } from "@chakra-ui/react";
 import dynamic from "next/dynamic"
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
+import { ApexOptions } from 'apexcharts';
 
 // lazyloading -> sem passar na camada backend next
 // somente carrega pelo browser
@@ -9,16 +10,13 @@ const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false
 })
 
-const options = {
+const options: ApexOptions = {
   chart: {
     toolbar: {
       show: false
     },
     zoom: {
       enabled: false,
-    },
-    stroke: {
-      width: 6
     },
     foreColor: theme.colors.gray[500],
   },
@@ -34,7 +32,6 @@ const options = {
   colors: [theme.colors.orange[500], ' #546E7A', '#E91E63'],
   xaxis: {
     type: 'datetime',
-    axisBordercolor: { color: theme.colors.orange[500] },
     axisTicks: { color: theme.colors.orange[500] },
     categories: [
       '2022-03-18T00:00:00.000Z',
