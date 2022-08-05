@@ -74,7 +74,7 @@ export default function Dashboard() {
             borderRadius={8}
             pb="4"
           >
-            <Text>Week's subscription</Text>
+            <Text>Week s subscription</Text>
             <Chart type="area" height={160} options={options} series={series} />
           </Box>
           <Box

@@ -11,7 +11,15 @@ if (process.env.NODE_ENV === 'development') {
   makeServer()
 }
 
-const queryClient = new QueryClient()
+// const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

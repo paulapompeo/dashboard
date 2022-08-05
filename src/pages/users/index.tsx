@@ -16,39 +16,16 @@ import {
   Spinner
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useEffect } from "react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
-import { useQuery } from "react-query"
 
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
+import { useUsers } from "../../services/hooks/useUsers";
 
 export default function UserList() {
-  // chave que a query sera armazenada no cache
   // 1 param metodo para retornar os dados
-  const { data, isLoading, error } = useQuery('users', async () => {
-    const response = await fetch('http://localhost:3000/api/users')
-    const data = await response.json()
-
-    const users = data.users.map(user => {
-      return {
-        ...user,
-        createdAt: new Date(user.createdAt).toLocaleDateString('en-US', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        }),
-      }
-    })
-
-    return users
-  }, {
-    // milissegundos
-    staleTime: 1000 * 5 // 5 segundos
-  })
-
-  console.log({ data })
+  const { data, isLoading, isFetching, error } = useUsers()
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -64,7 +41,11 @@ export default function UserList() {
 
         <Box flex="1" borderRadius={8} bg="gray.800" p="8">
           <Flex mb="8" justify="space-between" align="center">
-            <Heading size="md" fontWeight="normal">Users</Heading>
+            <Heading size="md" fontWeight="normal">
+              Users
+
+              {!isLoading && isFetching && <Spinner size="sm" color="orange.500" ml="4" />}
+            </Heading>
 
             <Link href="/users/create" passHref>
               <Button

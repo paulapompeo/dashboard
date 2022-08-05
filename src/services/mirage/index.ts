@@ -36,7 +36,7 @@ export function makeServer() {
     },
 
     seeds(server) {
-      server.createList('user', 10)
+      server.createList('user', 200)
     },
 
     routes() {
@@ -49,6 +49,9 @@ export function makeServer() {
       this.timing = 750
 
       // miragejs shorthand 
+      // this.get("/users", function (schema, request) {
+
+      // })
       this.get("/users")
       this.post("/users")
 
